@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/python
 # Visualization 2
 # Samuel van Apeldoorn and Mark Rasenberg
 # This script must be run in gephi using the console from the
@@ -55,12 +55,12 @@ def visualize(s):
 
 def export_graph(s):
     ec = Lookup.getDefault().lookup(org.gephi.io.exporter.api.ExportController)
-    exporter = ec.getExporter("GraphML")
+    exporter = ec.getExporter('GraphML')
     stringWriter = java.io.StringWriter()
     ec.exportWriter(stringWriter, exporter)
     graph = stringWriter.toString()
 
-    out_file = open(path + '-'.join(str(x) for x in s) + ".xml", 'w')
+    out_file = open(path + '-'.join(str(x) for x in s) + '.xml', 'w')
     out_file.write(graph)
     out_file.close()
 
