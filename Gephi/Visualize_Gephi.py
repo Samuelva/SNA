@@ -28,6 +28,7 @@ def main():
     for schedule in annealing_schedules:
         visualize(schedule)
 
+
 def visualize(s):
     layout = org.gephi.layout.plugin.openord.OpenOrdLayoutBuilder().buildLayout()    
     layout.resetPropertiesValues()
@@ -42,6 +43,11 @@ def visualize(s):
     layout.setSimmerStage(s[4])
 
     LayoutController.setLayout(layout)
+    can_execute = LayoutController.canExecute()
+
+    # Checks whether the previous visualization iterations is finished.
+    while not can_execute:
+        can_execute = LayoutController.canExecute()
     LayoutController.executeLayout()       
     
     export_graph(s)
